@@ -1,18 +1,22 @@
 package menu_member;
 
+import controller.MallController;
 import mall.MenuCommand;
+import util.Util;
 
 public class MemberItem implements MenuCommand{
+	private MallController mallCont;
 
 	@Override
 	public void init() {
-		// TODO Auto-generated method stub
+		mallCont = MallController.getInstance();
 		
 	}
 
 	@Override
 	public boolean update() {
-		// TODO Auto-generated method stub
+
+		
 		return false;
 	}
 

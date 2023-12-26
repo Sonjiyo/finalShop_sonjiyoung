@@ -39,7 +39,7 @@ public class MallController {
 	}
 
 	public void init() {
-		FileDAO.getInstance().loadAllFiles();
+		FileDAO.loadAllFiles();
 		mapCont = new HashMap<>();
 		mapCont.put("MallMain", new _MallMain());
 		mapCont.put("MallJoin", new MallJoin());

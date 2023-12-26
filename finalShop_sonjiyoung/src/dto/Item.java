@@ -1,7 +1,7 @@
 package dto;
 
 public class Item {
-	private static int num;
+	private static int num = 1;
 	private int itemNum;
 	private String categoryName;
 	private String itemName;
@@ -9,6 +9,22 @@ public class Item {
 	
 	public Item() {
 		
+	}
+
+	public int getItemNum() {
+		return itemNum;
+	}
+
+	public String getCategoryName() {
+		return categoryName;
+	}
+
+	public String getItemName() {
+		return itemName;
+	}
+
+	public int getPrice() {
+		return price;
 	}
 
 	public Item(String itemNum, String categoryName, String itemName, String price) {
@@ -26,5 +42,7 @@ public class Item {
 		this.price = price;
 	}
 	
-	
+	public String dataString() {
+		return itemNum+categoryName+itemName+price+"\n";
+	}
 }

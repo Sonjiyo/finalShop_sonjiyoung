@@ -10,9 +10,9 @@ public class _MallMain implements MenuCommand {
 	@Override
 	public void init() {
 		cont = MallController.getInstance();
-		System.out.println("=====[ 쇼핑몰 ]=====");
+		System.out.println("============[ 쇼핑몰 ]============");
 		System.out.println("[1] 회원가입\n[2] 로그인\n[0] 종료");
-		System.out.println("=====================");
+		System.out.println("=======================");
 	}
 
 	@Override
