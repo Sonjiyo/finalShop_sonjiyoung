@@ -2,6 +2,8 @@ package menu_mall;
 
 import controller.MallController;
 import dao.MemberDAO;
+import mall.MenuCommand;
+import util.Util;
 
 public class MallLogin implements MenuCommand {
 	private MallController cont;

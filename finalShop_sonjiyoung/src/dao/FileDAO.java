@@ -44,4 +44,9 @@ public class FileDAO {
 		createFile(FileName.CART);
 
 	}
+
+	public void loadAllFiles() {
+		// TODO Auto-generated method stub
+		
+	}
 }

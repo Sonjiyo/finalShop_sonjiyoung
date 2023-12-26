@@ -4,6 +4,9 @@ import java.util.*;
 
 import dao.FileDAO;
 import mall.MenuCommand;
+import menu_mall.*;
+import menu_admin.*;
+import menu_member.*;
 
 public class MallController {
 	private MallController() {}
@@ -13,7 +16,6 @@ public class MallController {
 	static public MallController getInstance() {
 		return instance;
 	}
-	
 
 	private String loginId;
 	private String next;

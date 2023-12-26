@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class Util {
 	private static Scanner sc = new Scanner(System.in);
-	private static Util instance = new Util();
 	
 	public static int getValue(String msg, int start, int end) {
 		while(true) {
