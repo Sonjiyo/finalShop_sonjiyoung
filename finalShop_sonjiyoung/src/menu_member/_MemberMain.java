@@ -1,6 +1,7 @@
 package menu_member;
 
 import controller.MallController;
+import dao.MemberDAO;
 import mall.MenuCommand;
 import util.Util;
 
@@ -19,7 +20,10 @@ public class _MemberMain implements MenuCommand {
 	public boolean update() {
 		int sel = Util.getValue("입력", 0, 6);
 		if(sel==0) {
-			mallCont.setNext("MallMain");
+			if (sel == 0) {
+				System.out.println("[ 프로그램 종료 ]");
+				mallCont.setNext(null);
+			}
 		} else if(sel==1) {
 			mallCont.setNext("MemberShopping");
 		} else if(sel==2) {
@@ -29,9 +33,12 @@ public class _MemberMain implements MenuCommand {
 		} else if(sel==4) {
 			mallCont.setNext("MemberInfo");
 		} else if(sel==5){
-			mallCont.setNext("MemberResign");						
+			MemberDAO.getInstance().memberQuit(mallCont.getLoginId());
+			mallCont.setNext("MallMain");
+			mallCont.setLoginId(null);
 		} else {
 			mallCont.setNext("MallMain");
+			mallCont.setLoginId(null);
 		}
 		
 		return false;

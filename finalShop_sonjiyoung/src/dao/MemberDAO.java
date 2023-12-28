@@ -3,6 +3,7 @@ package dao;
 import java.util.ArrayList;
 
 import dto.Member;
+import util.Util;
 
 
 public class MemberDAO {
@@ -15,7 +16,7 @@ public class MemberDAO {
 	static public MemberDAO getInstance() {
 		return instance;
 	}
-
+	
 	public void loadMemberData(String data) {
 		String[] dataList = data.split("\n");
 		for(int i=0; i<dataList.length; i++) {
@@ -61,5 +62,36 @@ public class MemberDAO {
 
 	public void removeMember(String id) {
 		memberList.remove(getMemberById(id));
+	}
+	
+	public void memberQuit(String id) {
+		int idx = getMemberById(id);
+		if(!checkPw(idx)) return;
+		memberList.remove(idx);
+		System.out.println("[탈퇴되었습니다]");
+	}
+	
+	private boolean checkPw(int idx) {
+		String pw = Util.getValue("현재 비밀번호 입력");
+		if(!memberList.get(idx).getPw().equals(pw)) {
+			System.out.println("비밀번호가 일치하지 않습니다.");
+			return false;
+		}
+		return true;
+	}
+	
+	public void changePw(String id) {
+		int idx = getMemberById(id);
+		if(!checkPw(idx)) return;
+		String pw = Util.getValue("변경할 비밀번호 입력");
+		memberList.get(idx).setPw(pw);
+		System.out.println("[비밀번호 변경 완료]");
+	}
+	
+	public void printMemberList() {
+		System.out.println("==== 전체 회원 목록 ===");
+		for(Member m : memberList) {
+			System.out.println(m);
+		}
 	}
 }

@@ -1,6 +1,7 @@
 package menu_admin;
 
 import controller.MallController;
+import dao.BoardDAO;
 import mall.MenuCommand;
 import util.Util;
 
@@ -19,11 +20,14 @@ public class AdminBoard implements MenuCommand{
 	public boolean update() {
 		int sel = Util.getValue("입력", 0, 3);
 		if(sel==0) {
-			return false;
+			if (sel == 0) {
+				System.out.println("[ 프로그램 종료 ]");
+				mallCont.setNext(null);
+			}
 		}else if(sel==1) {
-			
+			BoardDAO.getInstance().printBoard();
 		} else if(sel==2) {
-			
+			BoardDAO.getInstance().removeBoard(mallCont.getLoginId());
 		} else {
 			mallCont.setNext("AdminMain");
 		}

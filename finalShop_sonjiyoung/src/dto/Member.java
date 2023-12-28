@@ -47,4 +47,10 @@ public class Member {
 	public String getMemberName() {
 		return memberName;
 	}
+
+	@Override
+	public String toString() {
+		return "[%-5d] [%10s] [%10s] [%10s]".formatted(memberNum,id,pw,memberName);
+	}
+	
 }

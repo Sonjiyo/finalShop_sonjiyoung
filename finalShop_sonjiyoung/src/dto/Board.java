@@ -19,7 +19,7 @@ public class Board {
 		return hits;
 	}
 	public void setHits(int hits) {
-		this.hits = hits;
+		this.hits += hits;
 	}
 	public int getBoardNum() {
 		return boardNum;
@@ -36,6 +36,14 @@ public class Board {
 	public String getContents() {
 		return contents;
 	}
+	
+	public void setBoardNum(int boardNum) {
+		this.boardNum += boardNum;
+	}
+	
+	public static void setNum(int num) {
+		Board.num += num;
+	}
 	public Board(String title, String id,String contents) {
 		this.boardNum = num++;
 		this.title = title;
@@ -45,7 +53,7 @@ public class Board {
 		this.contents = contents;
 	}
 
-	public Board(String boardNum, String title, String id, String date, String contents, String hits) {
+	public Board(String boardNum, String title, String contents, String id, String date, String hits) {
 		super();
 		this.boardNum = Integer.parseInt(boardNum);
 		this.title = title;
@@ -57,6 +65,12 @@ public class Board {
 	}
 	
 	public String dataString() {
-		return boardNum+title+id+date+contents+hits+"\n";
+		return boardNum+title+contents+id+date+hits+"\n";
 	}
+	@Override
+	public String toString() {
+		return "%d) 제목 : %s\t작성자 : %s  날짜 : %s  조회수 : %d".formatted(boardNum,title,id,date,hits);
+	}
+	
+	
 }

@@ -19,7 +19,10 @@ public class MemberCart implements MenuCommand{
 	public boolean update() {
 		int sel = Util.getValue("입력", 0, 2);
 		if(sel==0) {
-			mallCont.setNext("MallMain");
+			if (sel == 0) {
+				System.out.println("[ 프로그램 종료 ]");
+				mallCont.setNext(null);
+			}
 		} else if(sel==1) {
 			mallCont.setNext("MemberShopping");
 		} else {

@@ -1,19 +1,23 @@
 package dao;
 
-import java.io.BufferedReader;
-import java.io.File;
+import java.io.*;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.*;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class FileDAO {
-	private static File file;
 	private static FileDAO instance = new FileDAO();
-	private static String filePath = System.getProperty("user.dir") + "\\src\\files\\";
+	private static String curPath = "src\\files";
+	private static Charset charset = StandardCharsets.UTF_8; 
 
 	enum FileName {
 		BOARD("board.txt"), MEMBER("member.txt"), ITEM("item.txt"), CART("cart.txt");
@@ -47,23 +51,23 @@ public class FileDAO {
 	}
 
 	private static String loadFile(FileName name) {
-		String data = "";
-		file = new File(filePath+name.getName());
-		try(FileReader fr = new FileReader(file);
-			BufferedReader br = new BufferedReader(fr);){
-			String str = "";
-			while(true) {
-				str = br.readLine();
-				if(str == null) break;
-				data+=str+"\n";
+		Path path = Paths.get(curPath,name.getName());
+		StringBuilder data = new StringBuilder();
+		
+		try(FileInputStream fis = new FileInputStream(path.toString());
+			InputStreamReader ir = new InputStreamReader(fis, charset);
+			BufferedReader br = new BufferedReader(ir);){
+			String line = "";
+			while((line=br.readLine())!=null) {
+				data.append(line);
+				data.append("\n");
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		data = data.substring(0,data.length()-1);
-		return data;
+		return data.toString().substring(0,data.length()-1);
 	}
 	
 	public static void loadAllFiles() {
@@ -74,9 +78,13 @@ public class FileDAO {
 	}
 	
 	private static void saveFile(String data,FileName name) {
-		file = new File(filePath+name.getName());
-		try(FileWriter fw = new FileWriter(file)){
-			fw.write(data);
+		Path path = Paths.get(curPath,name.getName());
+
+		try (FileOutputStream fos = new FileOutputStream(path.toString());
+			OutputStreamWriter ow = new OutputStreamWriter(fos, charset);
+			BufferedWriter bw = new BufferedWriter(ow);){
+			
+			bw.write(data);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
