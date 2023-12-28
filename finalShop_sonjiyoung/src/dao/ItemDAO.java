@@ -1,6 +1,7 @@
 package dao;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 import dto.Item;
 import util.Util;
@@ -19,17 +20,13 @@ public class ItemDAO {
 		return instance;
 	}
 	
-	public void print() {
+	public void printShoppingList() {
 		imputCategory();
-		//cateList.forEach(System.out::println);
-	}
-	
-	private void imputCategory() {
-		for(Item i : itemList) {
-			cateList.add(i.getCategoryName());
+		for(int i=0; i<cateList.size(); i++) {
+			System.out.printf("[%d] %s\n",i+1,cateList.get(i));
 		}
-		cateList.stream().distinct().toList().forEach(System.out::println);
 	}
+
 
 	public void loadItemData(String data) {
 		String[] dataList = data.split("\n");
@@ -95,5 +92,28 @@ public class ItemDAO {
 		itemList.remove(idx);
 		System.out.println("[아이템 삭제 완료]");
 	}
+	
+	private void imputCategory() {
+		for(Item i : itemList) {
+			cateList.add(i.getCategoryName());
+		}
+		cateList = (ArrayList<String>) cateList.stream().distinct().collect(Collectors.toList());
+	}
+	
+	public String selectCategory() {
+		int sel = Util.getValue("메뉴입력", 0, cateList.size())-1;
+		if(sel==-1) return "";
+		return cateList.get(sel);
+	}
+	
+	public void printCategoryItem(String category) {
+		int cnt = 1;
+		for(Item i : itemList) {
+			if(i.getCategoryName().equals(category)) {
+				System.out.printf("[%d] %s  %s원",cnt++,i.getItemName(),i.getPrice());
+			}
+		}
+	}
+	
 	
 }

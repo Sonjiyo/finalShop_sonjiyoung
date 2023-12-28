@@ -12,24 +12,16 @@ public class MemberShopping implements MenuCommand{
 	public void init() {
 		mallCont = MallController.getInstance();
 		System.out.println("======== 쇼핑몰에 오신 것을 환영합니다 ========");
-		ItemDAO.getInstance().print();
+		ItemDAO.getInstance().printShoppingList();
 		System.out.println("=======================");
 	}
 
 	@Override
 	public boolean update() {
-		int sel = Util.getValue("입력", 0, 2);
-		if(sel==0) {
-			if (sel == 0) {
-				System.out.println("[ 프로그램 종료 ]");
-				mallCont.setNext(null);
-			}
-		} else if(sel==1) {
-			mallCont.setNext("MemberShopping");
-		} else {
-			mallCont.setNext("MemberMain");
-		}
-		
+		String sel = ItemDAO.getInstance().selectCategory();
+		if(sel.isEmpty()) return false;
+		ItemDAO.getInstance().printCategoryItem(sel);
+		String item = Util.getValue("구매 아이템 이름 입력 : ");
 		return false;
 	}
 
