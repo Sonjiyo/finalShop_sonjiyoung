@@ -82,6 +82,7 @@ public class ItemDAO {
 	}
 	
 	public void removeItemList() {
+		printItemList();
 		System.out.println("[아이템 삭제 시 구매 내역이 사라집니다]");
 		String name = Util.getValue("삭제할 아이템 입력");
 		int idx = checkItemName(name);
@@ -89,8 +90,8 @@ public class ItemDAO {
 			System.out.println("존재하지 않는 아이템입니다.");
 			return;
 		}
-		itemList.remove(idx);
 		CartDAO.getInstance().removeItemCartList(itemList.get(idx).getItemNum());
+		itemList.remove(idx);
 		System.out.println("[아이템 삭제 완료]");
 	}
 	

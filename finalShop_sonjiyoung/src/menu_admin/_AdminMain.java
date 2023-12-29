@@ -11,11 +11,13 @@ public class _AdminMain implements MenuCommand {
 	@Override
 	public void init() {
 		mallCont = MallController.getInstance();
+		System.out.println("============[ 관리자 ]============");
+		System.out.println("[1] 회원관리\n[2] 상품관리\n[3] 게시판관리\n[4] 로그아웃\n[5] 파일저장\n[0] 종료");
+		System.out.println("=======================");
 	}
 
 	@Override
 	public boolean update() {
-		System.out.println("[1] 회원관리\n[2] 상품관리\n[3] 게시판관리\n[4] 로그아웃\n[5] 파일저장\n[0] 종료");
 		int sel = Util.getValue("입력", 0, 5);
 		if(sel==0) {
 			if (sel == 0) {

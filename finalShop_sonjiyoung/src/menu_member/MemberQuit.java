@@ -22,16 +22,15 @@ public class MemberQuit implements MenuCommand{
 	
 		if(id.equals("admin")) {
 			System.out.println("어드민계정은 탈퇴할 수 없습니다.");
+			mallCont.setNext("AdminMain");
 			return false;
 		}
-		String pw = Util.getValue("비밀번호");
-		if (dao.isValidMember(id, pw)) {
+		if (dao.getMemberById(id)!=-1) {
 			dao.removeMember(id);
 			CartDAO.getInstance().removeMemberCartList(id);
 			System.out.println("[회원 탈퇴 완료]");
 		} else {
-			System.err.println("아이디 혹은 비밀번호를 확인해주세요");
-			mallCont.setLoginId(null);
+			System.out.println("존재하지 않는 아이디입니다.");
 		}
 		mallCont.setNext("AdminMain");
 		return false;
