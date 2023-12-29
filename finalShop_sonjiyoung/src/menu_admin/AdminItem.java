@@ -1,6 +1,7 @@
 package menu_admin;
 
 import controller.MallController;
+import dao.CartDAO;
 import dao.ItemDAO;
 import mall.MenuCommand;
 import util.Util;
@@ -30,7 +31,7 @@ public class AdminItem implements MenuCommand{
 		} else if(sel==2) {
 			ItemDAO.getInstance().removeItemList();
 		} else if(sel==3){
-			
+			CartDAO.getInstance().printCartList();
 		} else {
 			mallCont.setNext("AdminMain");
 		} 

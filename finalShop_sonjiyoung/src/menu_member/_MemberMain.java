@@ -12,7 +12,7 @@ public class _MemberMain implements MenuCommand {
 	public void init() {
 		mallCont = MallController.getInstance();
 		System.out.println("============[ 회원 s님 ]============");
-		System.out.println("[1] 상품구매\n[2] 장바구니\n[3] 게시판\n[4] 나의 정보\n[5] 회원 탈퇴\n[6] 로그아웃\n[0] 종료");
+		System.out.println("[1] 상품구매\n[2] 구매내역\n[3] 게시판\n[4] 나의 정보\n[5] 회원 탈퇴\n[6] 로그아웃\n[0] 종료");
 		System.out.println("=======================");
 	}
 

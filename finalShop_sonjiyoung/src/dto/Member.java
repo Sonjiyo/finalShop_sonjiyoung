@@ -27,7 +27,7 @@ public class Member {
 	}
 	
 	public String dataString() {
-		return memberNum+id+pw+memberName+"\n";
+		return memberNum+"/"+id+"/"+pw+"/"+memberName+"\n";
 	}
 
 	public int getMemberNum() {

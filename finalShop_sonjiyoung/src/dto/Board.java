@@ -65,7 +65,7 @@ public class Board {
 	}
 	
 	public String dataString() {
-		return boardNum+title+contents+id+date+hits+"\n";
+		return boardNum+"/"+title+"/"+contents+"/"+id+"/"+date+"/"+hits+"\n";
 	}
 	@Override
 	public String toString() {

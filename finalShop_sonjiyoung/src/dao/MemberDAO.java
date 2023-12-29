@@ -84,6 +84,10 @@ public class MemberDAO {
 		int idx = getMemberById(id);
 		if(!checkPw(idx)) return;
 		String pw = Util.getValue("변경할 비밀번호 입력");
+		if(memberList.get(idx).getPw().equals(pw)) {
+			System.out.println("이미 사용중인 비밀번호입니다.");
+			return;
+		}
 		memberList.get(idx).setPw(pw);
 		System.out.println("[비밀번호 변경 완료]");
 	}

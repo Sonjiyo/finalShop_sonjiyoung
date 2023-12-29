@@ -90,6 +90,7 @@ public class ItemDAO {
 			return;
 		}
 		itemList.remove(idx);
+		CartDAO.getInstance().removeItemCartList(itemList.get(idx).getItemNum());
 		System.out.println("[아이템 삭제 완료]");
 	}
 	
@@ -101,6 +102,8 @@ public class ItemDAO {
 	}
 	
 	public String selectCategory() {
+		System.out.println("[0] 뒤로가기");
+		System.out.println("=======================");
 		int sel = Util.getValue("메뉴입력", 0, cateList.size())-1;
 		if(sel==-1) return "";
 		return cateList.get(sel);
@@ -108,12 +111,47 @@ public class ItemDAO {
 	
 	public void printCategoryItem(String category) {
 		int cnt = 1;
+		System.out.println("[ "+category+"의 아이템 목록 ]");
 		for(Item i : itemList) {
 			if(i.getCategoryName().equals(category)) {
-				System.out.printf("[%d] %s  %s원",cnt++,i.getItemName(),i.getPrice());
+				System.out.printf("[%d] %s  %s원\n",cnt++,i.getItemName(),i.getPrice());
 			}
 		}
 	}
 	
+	public int getItemNumber(String category, String item) {
+		for(Item i : itemList) {
+			if(i.getItemName().equals(item) && i.getCategoryName().equals(category)) {
+				return i.getItemNum();
+			}
+		}
+		return -1;
+	}
 	
+	public int getItemPrice(int itemNum) {
+		for(Item i : itemList) {
+			if(i.getItemNum()==itemNum) {
+				return i.getPrice();
+			}
+		}
+		return -1;
+	}
+	
+	public String getItemName(int itemNum) {
+		for(Item i : itemList) {
+			if(i.getItemNum()==itemNum) {
+				return i.getItemName();
+			}
+		}
+		return "";
+	}
+	
+	public String getCategory(int itemNum) {
+		for(Item i : itemList) {
+			if(i.getItemNum()==itemNum) {
+				return i.getCategoryName();
+			}
+		}
+		return "";
+	}
 }

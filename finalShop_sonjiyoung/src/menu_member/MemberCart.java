@@ -1,6 +1,7 @@
 package menu_member;
 
 import controller.MallController;
+import dao.CartDAO;
 import mall.MenuCommand;
 import util.Util;
 
@@ -11,8 +12,10 @@ public class MemberCart implements MenuCommand{
 	public void init() {
 		mallCont = MallController.getInstance();
 		System.out.println("============[ 구매내역 ]============");
-		System.out.println("[1] 상품구매\n[2] 뒤로가기\n[0] 종료");
+		System.out.println("[1] 쇼핑하기\n[2] 뒤로가기\n[0] 종료");
 		System.out.println("=======================");
+		CartDAO.getInstance().printMyCartList(mallCont.getLoginId());
+		
 	}
 
 	@Override

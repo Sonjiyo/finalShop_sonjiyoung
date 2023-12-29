@@ -43,7 +43,7 @@ public class Item implements Comparable<Item>{
 	}
 	
 	public String dataString() {
-		return itemNum+categoryName+itemName+price+"\n";
+		return itemNum+"/"+categoryName+"/"+itemName+"/"+price+"\n";
 	}
 
 	@Override
